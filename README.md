@@ -178,6 +178,34 @@ Run `python yolo_live.py --help` for the full list.
 
 ---
 
+## Hardware requirements
+
+### PC gaming — no extra hardware needed
+
+For **PC games**, this runs entirely on your machine. No capture cards, no external gear:
+
+```
+Your GPU renders the game → dxcam/mss grabs frames in-memory → YOLOv8 processes them → overlay drawn on top
+```
+
+All happening locally with zero encoding/decoding latency — that's why it hits 60+ FPS. The only requirement is a GPU capable of pushing ONNX inference at speed (basically any modern card). Just `pip install` and run alongside your game.
+
+### Console gaming — capture card required
+
+For **PS5 / Xbox**, you'll need an external capture card since you can't run Python on the console itself:
+
+```
+Console → HDMI out → Capture card → USB into PC → CV pipeline runs on PC
+```
+
+**Trade-offs:** adds latency, drops quality (compressed video stream instead of raw frame buffers), and costs $100–200 for a decent card. Also slower overall since you're dealing with encoded streams rather than direct memory access.
+
+### Why this matters for detection
+
+Since the pipeline reads **pixels from your own screen buffer**, it's technically an **external overlay** — not injecting into any game process. Anti-cheat would need to scan for known overlay processes or hook DirectX/OpenGL rendering calls, which is a fundamentally different detection surface than memory-reading cheats.
+
+---
+
 ## Disclaimer
 
 This code is for **research, education, and offline analysis of gameplay you
