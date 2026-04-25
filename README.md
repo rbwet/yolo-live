@@ -200,10 +200,6 @@ Console → HDMI out → Capture card → USB into PC → CV pipeline runs on PC
 
 **Trade-offs:** adds latency, drops quality (compressed video stream instead of raw frame buffers), and costs $100–200 for a decent card. Also slower overall since you're dealing with encoded streams rather than direct memory access.
 
-### Why this matters for detection
-
-Since the pipeline reads **pixels from your own screen buffer**, it's technically an **external overlay** — not injecting into any game process. Anti-cheat would need to scan for known overlay processes or hook DirectX/OpenGL rendering calls, which is a fundamentally different detection surface than memory-reading cheats.
-
 ---
 
 ## Disclaimer
