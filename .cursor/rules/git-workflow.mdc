@@ -1,0 +1,94 @@
+---
+description: Strict git workflow for yolo-live — develop-branch + feature branches + PMC
+alwaysApply: true
+---
+
+# yolo-live Git Workflow (MANDATORY)
+
+This project uses a strict develop-branch + feature-branch workflow. Follow it for every feature, fix, or non-trivial change without being reminded.
+
+## Branching model
+
+- `main` is the stable release branch. **Never** commit directly to `main`.
+- `develop` is the integration branch. **Never** commit directly to `develop` from an agent session.
+- Every new piece of work happens on a dedicated **feature branch** cut from `develop`.
+- Feature branch naming: `feature/<short-kebab-case-description>`.
+  - Examples: `feature/voice-hotkey`, `feature/memory-rag`, `feature/reasoning-tokens`, `fix/input-focus`.
+
+## Start-of-task protocol
+
+Before writing any code for a new feature:
+
+1. Run `git status` to confirm the working tree is clean. If it isn't, stop and ask the user how to handle uncommitted work.
+2. `git checkout develop && git pull` to make sure we're current.
+3. `git checkout -b feature/<name>` — create the feature branch.
+4. Only then begin the work.
+
+If the user starts describing a new feature and we're not already on a feature branch for it, create one first. Do not silently pile new work onto an existing feature branch that's about a different thing.
+
+## During the task
+
+- Commit in logical chunks. Each commit message should explain the *why* in 1–2 sentences, not just the *what*.
+- Push the feature branch to `origin` as soon as the first real commit lands (`git push -u origin feature/<name>`), so work is never only on the local machine.
+- Never force-push a shared branch without explicit user permission.
+
+## PMC — Push, Merge, Close
+
+When the user says the feature is good, or says "pmc", execute this sequence in order, without prompting unless a step fails:
+
+```bash
+# 1. PUSH — make sure the feature branch is fully up on origin
+git push
+
+# 2. MERGE — fast-forward develop with the feature branch
+git checkout develop
+git pull
+git merge --no-ff feature/<name> -m "Merge feature/<name> into develop"
+git push
+
+# 3. CLOSE — delete the feature branch locally and on origin
+git branch -d feature/<name>
+git push origin --delete feature/<name>
+
+# Leave the working tree on develop, clean, current.
+git status
+```
+
+Use `--no-ff` on the merge so the feature's history is preserved as a visible branch in the graph.
+
+## Releasing to main
+
+`main` **only moves when `develop` has been pushed and has absorbed the change first.** Never merge a feature branch into `main` directly, never cherry-pick a feature commit onto `main`, and never push to `main` ahead of `develop`.
+
+The release flow is always:
+
+```bash
+# Preconditions: feature work is already merged into develop AND pushed.
+git checkout develop && git pull
+# Confirm origin/develop contains what we want on main. If it doesn't, stop.
+
+git checkout main && git pull
+git merge --no-ff develop -m "Release: merge develop into main"
+git push
+git checkout develop   # leave the working tree back on develop
+```
+
+If `origin/develop` isn't ahead of `origin/main`, there is nothing to release — do not invent a release. `main` is only ever a subset of what's already on `develop`.
+
+## Hard rules
+
+- **Never** commit or push to `main` or `develop` from a feature context.
+- **Never** start work without a feature branch.
+- **Never** delete a feature branch until the merge is confirmed on `origin/develop`.
+- **Never** skip `git pull` before branching off `develop` or merging into it.
+- **Never** use `git commit --no-verify` or `git push --force` unless the user explicitly asks for it.
+- **Never** push `main` ahead of `develop`. `main` must always be a merge target *from* `develop`, never a shortcut around it.
+
+## Quick reference
+
+| User says… | You do… |
+| --- | --- |
+| "Let's build X" | Create `feature/<x>` from latest `develop`, start work |
+| "This looks good" / "pmc" | Run the PMC sequence above |
+| "Release this" | Merge `develop` into `main`, push both |
+| "Abandon this" | `git checkout develop && git branch -D feature/<name> && git push origin --delete feature/<name>` (after confirming with user) |
