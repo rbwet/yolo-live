@@ -29,6 +29,9 @@ This repo is a **minimal, end-to-end pipeline** that:
 - Picks an aimpoint, smooths it with an EMA, and renders an overlay you can tune live.
 - Comes with a complete **train-your-own-class** workflow (extract → autolabel → fine-tune → export).
 
+- Why pay for tools?
+- Why pay for frameworks and lab plugins?
+
 Built originally to detect enemy players in *Call of Duty* gameplay clips — the same
 pipeline works for any single-class detector you want to ship in real time.
 
