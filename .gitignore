@@ -1,0 +1,46 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+
+# --- Editor / OS ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# --- ML artifacts (too big / not source) ---
+*.onnx
+*.pt
+*.pth
+*.engine
+*.tflite
+*.h5
+runs/
+wandb/
+mlruns/
+
+# --- Dataset payloads (only commit structure + scripts) ---
+dataset/images/*
+dataset/labels/*
+!dataset/images/.gitkeep
+!dataset/labels/.gitkeep
+
+# --- Recorded gameplay / large media ---
+clips/*
+!clips/.gitkeep
+
+# --- Misc ---
+*.log
+.ipynb_checkpoints/
