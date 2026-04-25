@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/hero.svg" alt="YOLO Live black-and-white 8-bit skull detection banner" width="100%">
+<img src="docs/hero-v2.svg" alt="YOLO Live black-and-white 8-bit skull detection banner" width="100%">
 
 # yolo-live
 

@@ -21,5 +21,5 @@ copy.
 
 ## Asset
 
-The main README hero is `docs/hero.svg`. Keep it black and white so the repo
+The main README hero is `docs/hero-v2.svg`. Keep it black and white so the repo
 stays sharp in both light and dark GitHub themes.
