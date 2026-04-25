@@ -99,5 +99,5 @@
 
   <!-- Title lockup -->
   <text x="600" y="76" text-anchor="middle" class="pixel blink" font-size="54">YOLO LIVE</text>
-  <text x="600" y="428" text-anchor="middle" class="tiny" font-size="24">REAL-TIME ONNX DETECTION // BLACK-WHITE PIXEL CORE</text>
+  <text x="600" y="428" text-anchor="middle" class="tiny" font-size="24">REAL-TIME ONNX DETECTION // CAPTURE INFER OVERLAY</text>
 </svg>
