@@ -1,16 +1,18 @@
 <div align="center">
 
+<img src="docs/hero.svg" alt="YOLO Live black-and-white 8-bit skull detection banner" width="100%">
+
 # yolo-live
 
 **Real-time YOLOv8 ONNX detection pipeline, tuned for 60+ FPS gameplay.**
 
 Capture → preprocess → infer → postprocess → aimpoint, in one tight loop.
 
-[![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![ONNX Runtime](https://img.shields.io/badge/ONNX%20Runtime-1.16%2B-005CED?logo=onnx&logoColor=white)](https://onnxruntime.ai/)
-[![Ultralytics](https://img.shields.io/badge/YOLOv8-Ultralytics-00FFFF)](https://github.com/ultralytics/ultralytics)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Code style: ruff](https://img.shields.io/badge/lint-ruff-46aef7)](https://github.com/astral-sh/ruff)
+[![Python](https://img.shields.io/badge/python-3.10%2B-black?labelColor=000000&color=ffffff)](https://www.python.org/)
+[![ONNX Runtime](https://img.shields.io/badge/ONNX%20Runtime-1.16%2B-black?labelColor=000000&color=ffffff)](https://onnxruntime.ai/)
+[![Ultralytics](https://img.shields.io/badge/YOLOv8-Ultralytics-black?labelColor=000000&color=ffffff)](https://github.com/ultralytics/ultralytics)
+[![License: MIT](https://img.shields.io/badge/License-MIT-black?labelColor=000000&color=ffffff)](LICENSE)
+[![Theme](https://img.shields.io/badge/theme-8--bit%20monochrome-black?labelColor=000000&color=ffffff)](docs/theme.md)
 
 </div>
 
